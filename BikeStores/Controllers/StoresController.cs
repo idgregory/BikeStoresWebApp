@@ -18,7 +18,7 @@ namespace BikeStores.Controllers
             List<StoresListModel> StoresList = new List<StoresListModel>();
             using (IDbConnection db = new SqlConnection("Server=localhost;" + "Database=DemoDB;" + "Integrated Security=True;"))
             {
-                StoresList = db.Query<StoresListModel>("Select * from sales.stores").ToList();
+                StoresList = db.Query<StoresListModel>("dbo.StoresList", commandType: CommandType.Text).ToList();
             }
             return View(StoresList);
         }
@@ -28,10 +28,11 @@ namespace BikeStores.Controllers
             List<ProductsModel> ProductsList = new List<ProductsModel>();
             using (IDbConnection db = new SqlConnection("Server=localhost;" + "Database=DemoDB;" + "Integrated Security=True;"))
             {
-                string queryStr = "SELECT product_name as Product, model_year as Year, list_price as Price, " +
+                /*string queryStr = "SELECT product_name as Product, model_year as Year, list_price as Price, " +
                     "case when product_id in (select DISTINCT product_id from production.stocks) then 'In Stock' else 'Out of Stock' end as Availability " +
-                    "from production.products";
-                ProductsList = db.Query<ProductsModel>(queryStr).ToList();
+                    "from production.products order by Product";
+                */
+                ProductsList = db.Query<ProductsModel>("dbo.GetProducts", commandType: CommandType.Text).ToList();
             }
             return View(ProductsList);
         }
