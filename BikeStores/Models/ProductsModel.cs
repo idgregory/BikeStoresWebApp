@@ -10,5 +10,7 @@ namespace BikeStores.Models
         public string Product { get; set; }
         public Int16 Year { get; set; }
         public decimal Price { get; set; }
+
+        public string Availability { get; set; }
     }
 }
