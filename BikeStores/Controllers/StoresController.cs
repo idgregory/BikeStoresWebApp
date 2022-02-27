@@ -52,7 +52,6 @@ namespace BikeStores.Controllers
                                     where quantity > 0
                                     order by brand_name; ";
                 ProductsList = db.Query<BrandModel>(query, commandType: CommandType.Text).ToList();
-
             }
             return View(ProductsList);
         }
