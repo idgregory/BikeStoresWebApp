@@ -16,5 +16,8 @@ namespace BikeStores.Models
 
         public string state { get; set; }
         public string zip_code { get; set; }
+
     }
+
+
 }

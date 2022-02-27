@@ -1,42 +1,46 @@
-﻿@model IEnumerable<BikeStores.Models.BrandModel>
+﻿@model BikeStores.Models.BrandsViewModel
 @{
     ViewBag.Title = "Products By Brand";
 }
 
 <h2>Products By Brand</h2>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Brand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Store)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+@if (Model.BrandList == null)
+{
+    <div>
+        <form method="post">
+            @Html.DropDownListFor(Model => Model.BrandName, new SelectList(Model.AllBrandsList), "Select Brand")
+            <input type="submit" value="Search" formmethod="post" />
+        </form>
+
+    </div>
+}
+else
+{
+
+    @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Store)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
+            <th>
+                Brand
+            </th>
+            <th>
+                Product
+            </th>
         </tr>
 
-    }
+        @foreach (var item in Model.BrandList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product)
+                </td>
+            </tr>
 
-</table>
+        }
+
+    </table>
+}

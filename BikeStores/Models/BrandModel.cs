@@ -9,7 +9,14 @@ namespace BikeStores.Models
     {
         public string Brand { get; set; }
         public string Product { get; set; }
-        public string Store { get; set; }
-        public int  Quantity { get; set; }
+        //public int  Quantity { get; set; }
     }
+
+    public class BrandsViewModel
+    {
+        public string BrandName { get; set; }
+        public List<BrandModel> BrandList { get; set; }
+        public List<string> AllBrandsList { get; set; }
+    }
+
 }
