@@ -22,7 +22,7 @@ namespace BikeStores.Controllers
             }
             return View(StoresList);
         }
-        //Gets the products
+
         public ActionResult GetProducts()
         {
             List<ProductsModel> ProductsList = new List<ProductsModel>();
