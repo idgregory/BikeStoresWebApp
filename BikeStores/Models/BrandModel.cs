@@ -7,6 +7,7 @@ namespace BikeStores.Models
 {
     public class BrandModel
     {
+        public string Brand { get; set; }
         public string Product { get; set; }
         //public int  Quantity { get; set; }
     }

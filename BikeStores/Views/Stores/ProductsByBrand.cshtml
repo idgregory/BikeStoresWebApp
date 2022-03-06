@@ -3,13 +3,10 @@
     ViewBag.Title = "Products By Brand";
 }
 
-<div class="jumbotron">
-    <h2 style="text-align: center">Products By Brand</h2>
-</div>
+<h2>Products By Brand</h2>
 
 @if (Model.BrandList == null)
 {
-
     <div>
         <form method="post">
             @Html.DropDownListFor(Model => Model.BrandName, new SelectList(Model.AllBrandsList), "Select Brand")
@@ -20,17 +17,24 @@
 }
 else
 {
+
     @Html.ActionLink("Back", null, null, null, new { href = Request.UrlReferrer })
     <table class="table">
         <tr>
             <th>
-                @Model.BrandName 's Products
+                Brand
+            </th>
+            <th>
+                Product
             </th>
         </tr>
 
         @foreach (var item in Model.BrandList)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Product)
                 </td>
