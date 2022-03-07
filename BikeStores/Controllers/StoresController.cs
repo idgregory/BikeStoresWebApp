@@ -19,7 +19,6 @@ namespace BikeStores.Controllers
             using (IDbConnection db = new SqlConnection("Server=localhost;" + "Database=DemoDB;" + "Integrated Security=True;"))
             {
                 StoresList = db.Query<StoresListModel>("dbo.StoresList", commandType: CommandType.Text).ToList();
-
             }
             return View(StoresList);
         }
@@ -63,15 +62,6 @@ namespace BikeStores.Controllers
 
                 using (IDbConnection db = new SqlConnection("Server=localhost;" + "Database=DemoDB;" + "Integrated Security=True;"))
                 {
-                    //string query = @"select brand_name as Brand, product_name as Product, store_name as Store, quantity as Quantity
-                    //                    from production.stocks stocks_tbl
-
-                    //                        join (select product_id, product_name, brand_name from production.products p join(select brand_id, brand_name from production.brands where brand_name in ('Electra', 'Haro', 'Heller')) b on p.brand_id = b.brand_id)  products_tbl
-                    //                            on stocks_tbl.product_id = products_tbl.product_id
-
-                    //                        join sales.stores stores_tbl on stocks_tbl.store_id = stores_tbl.store_id
-                    //                    where quantity > 0
-                    //                    order by brand_name; ";
                     DataTable nameTable = new DataTable();
                     nameTable.Columns.Add("brand_name", typeof(string));
                     nameTable.Rows.Add();
